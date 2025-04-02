@@ -2,7 +2,9 @@ const express = require('express');
 const { MessagingResponse } = require('twilio').twiml;
 
 const app = express();
-const port = process.env.PORT || 8080;  // Utiliser le port 8080 par défaut ou le port fourni par Railway
+
+// Utiliser uniquement le port fourni par Railway (process.env.PORT)
+const port = process.env.PORT;  // Railway définit automatiquement ce port
 
 // Middleware pour parser les données du formulaire
 app.use(express.urlencoded({ extended: false }));
