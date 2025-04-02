@@ -2,7 +2,7 @@ const express = require('express');
 const { MessagingResponse } = require('twilio').twiml;
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8080;  // Utiliser le port 8080 par défaut ou le port fourni par Railway
 
 // Middleware pour parser les données du formulaire
 app.use(express.urlencoded({ extended: false }));
@@ -43,7 +43,13 @@ app.post('/whatsapp', (req, res) => {
     res.send(twiml.toString());
 });
 
+// Route favicon (facultatif, pour éviter des erreurs liées au favicon)
+app.get('/favicon.ico', (req, res) => res.status(204).send());
+
 // Démarrer le serveur
 app.listen(port, () => {
     console.log(`✅ Serveur démarré sur le port ${port}`);
 });
+
+// Garder le serveur actif en permanence
+setInterval(() => {}, 1000);  // Cette ligne permet de garder le serveur actif sans qu'il se ferme.
