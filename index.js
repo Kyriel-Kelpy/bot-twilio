@@ -2,9 +2,7 @@ const express = require('express');
 const { MessagingResponse } = require('twilio').twiml;
 
 const app = express();
-
-// Utiliser uniquement le port fourni par Railway (process.env.PORT)
-const port = process.env.PORT;  // Railway définit automatiquement ce port
+const port = process.env.PORT || 3000;
 
 // Middleware pour parser les données du formulaire
 app.use(express.urlencoded({ extended: false }));
@@ -45,13 +43,16 @@ app.post('/whatsapp', (req, res) => {
     res.send(twiml.toString());
 });
 
-// Route favicon (facultatif, pour éviter des erreurs liées au favicon)
-app.get('/favicon.ico', (req, res) => res.status(204).send());
-
-// Démarrer le serveur
-app.listen(port, () => {
-    console.log(`✅ Serveur démarré sur le port ${port}`);
+// Gestion des erreurs pour éviter que l'app ne se ferme
+app.use((err, req, res, next) => {
+    console.error('Erreur serveur :', err);
+    res.status(500).send('Quelque chose s\'est mal passé.');
 });
 
-// Garder le serveur actif en permanence
-setInterval(() => {}, 1000);  // Cette ligne permet de garder le serveur actif sans qu'il se ferme.
+// Démarrer le serveur avec un mécanisme de gestion d'erreurs
+app.listen(port, () => {
+    console.log(`✅ Serveur démarré sur le port ${port}`);
+}).on('error', (err) => {
+    console.error('Erreur de démarrage du serveur :', err);
+    process.exit(1); // Si une erreur grave se produit, arrêter le processus
+});
