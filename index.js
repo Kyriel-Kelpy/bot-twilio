@@ -2,7 +2,7 @@ const express = require('express');
 const { MessagingResponse } = require('twilio').twiml;
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = 8080;
 
 // Middleware pour parser les données du formulaire
 app.use(express.urlencoded({ extended: false }));
