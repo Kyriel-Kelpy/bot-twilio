@@ -11,7 +11,7 @@ const pseudos = [
 const roles = [
   "Villageois","Villageois","Villageois","Villageois","Villageois","Villageois","Villageois","Villageois","Villageois","Villageois","Villageois","Villageois","Villageois","Villageois","Villageois", // 15
   "Loup-Garou","Loup-Garou","Loup-Garou","Loup-Garou","Loup-Garou", "Loup-Garou","Loup Solitaire", // 7
-  "Voyante", "Sorcière", "Cupidon", "Chasseur", "Joueur de Flûte", "Le Maire", "L'Ancien", "Le Chevalier" // 7
+  "Voyante", "Sorcière", "Cupidon", "Chasseur", "Joueur de Flûte", "Le Maire", "Le Chevalier", "Parieur" // 8
 ];
 
 const rolesData = [
@@ -58,7 +58,7 @@ const rolesData = [
     moment: "nuit 0"
   },
   {
-    nom: "Le Parieur",
+    nom: "Parieur",
     description: "Chaque nuit, vous pariez sur la cible des loups. Si vous devinez juste, vous gagnez un point. À 3 points, vous gagnez seul. Mais si vous ratez trois fois, vous mourez.",
     commandes: ["/parier"],
     utilisation: "1 pari par nuit",
@@ -79,13 +79,7 @@ const rolesData = [
     utilisation: "passif",
     moment: "jour (vote)"
   },
-  {
-    nom: "L'Ancien",
-    description: "Vous survivez à la première attaque des loups ou d’un poison. Si vous êtes éliminé par vote, tous les villageois perdent leur pouvoir.",
-    commandes: [],
-    utilisation: "automatique",
-    moment: "résistance (nuit), effet déclenché à la mort (jour)"
-  },
+ 
   {
     nom: "Chevalier",
     description: "Chaque nuit, vous protégez un joueur des attaques. Vous ne pouvez pas protéger la même personne deux nuits de suite.",
